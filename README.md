@@ -1,4 +1,4 @@
-# Social Publisher Workflow
+# Feishu WeChat Publisher
 
 Local-first social publishing workflow for AI image posts, Feishu command control, WeChat Official Account automation, and Xiaohongshu visual probing.
 
