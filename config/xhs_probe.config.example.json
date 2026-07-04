@@ -1,0 +1,59 @@
+{
+  "xhs_publish_url": "https://creator.xiaohongshu.com/publish/publish",
+  "xhs_creator_url": "https://creator.xiaohongshu.com",
+  "xhs_publish_tab": "上传图文",
+  "profile_dir": ".\\profiles\\xhs",
+  "screenshot_dir": ".\\screenshots",
+  "log_dir": ".\\logs",
+  "vision_prompt_path": "vision_prompt.txt",
+  "browser": {
+    "headless": false,
+    "channel": "",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "locale": "zh-CN",
+    "slow_mo_ms": 50,
+    "goto_timeout_ms": 60000,
+    "settle_wait_ms": 5000
+  },
+  "glm": {
+    "api_endpoint": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+    "model": "glm-4v-flash",
+    "api_key_env": "GLM_API_KEY",
+    "api_key_file": ".\\.secrets\\glm_api_key.txt",
+    "timeout_seconds": 60,
+    "temperature": 0.1,
+    "max_tokens": 1024
+  },
+  "agent_vision": {
+    "enabled": false,
+    "api_endpoint": "",
+    "model": "",
+    "api_key_env": "AGENT_API_KEY",
+    "api_key_file": ".\\.secrets\\agent_api_key.txt",
+    "timeout_seconds": 60,
+    "temperature": 0.1,
+    "max_tokens": 1024,
+    "note": "Optional OpenAI-compatible vision fallback. Fill api_endpoint and model before enabling."
+  },
+  "deepseek": {
+    "enabled": false,
+    "api_endpoint": "https://api.deepseek.com/chat/completions",
+    "model": "deepseek-chat",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "api_key_file": ".\\.secrets\\deepseek_api_key.txt",
+    "note": "DeepSeek is not called by default because this probe needs image recognition."
+  },
+  "dry_run_defaults": {
+    "title": "1234",
+    "body": "12345",
+    "upload_wait_seconds": 20
+  },
+  "safety": {
+    "never_click_publish": true,
+    "max_operation_retries": 2
+  }
+}
+

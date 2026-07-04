@@ -1,0 +1,59 @@
+给接手 AI 的说明：
+
+这是 xhs_workflow 的“文案实验室”单文件入口。你只需要改这个文件，不要改正式链路。
+
+目标：
+- 调整小红书/公众号图文的标题、正文、话题生成风格。
+- 用 `caption_lab.py` 单独测试效果。
+- 不影响正式发布链路里的 `workflow.py -> ai_caption_prompt()`。
+
+边界：
+- 只改下面 `--- PROMPT START ---` 和 `--- PROMPT END ---` 之间的内容。
+- 保留变量 `{{character_name}}` 和 `{{work_name}}`，脚本会自动替换。
+- 输出仍必须是 JSON，字段为 `title`、`copy`、`topics`。
+- 不要在这个文件里写 API key、token、cookie、webhook。
+- 不要改 `workflow.py`、`latest_publish_candidate.json`、发布 bridge、飞书发送逻辑。
+
+本地预览：
+
+```powershell
+cd <repo>\workflow
+python caption_lab.py --prompt-only
+```
+
+实际调用模型测试：
+
+```powershell
+python caption_lab.py --character "虎杖悠仁" --work "咒术回战" --save
+```
+
+实验结果会保存到 `state\caption_lab_runs\`，该目录在 `.gitignore` 覆盖的 `state/` 下。
+
+--- PROMPT START ---
+
+请为小红书/公众号图文生成 JSON。只输出 JSON，不要输出 Markdown。
+
+字段固定为：
+{
+  "title": "",
+  "copy": "",
+  "topics": []
+}
+
+目标：
+- title 固定格式：人物名 | 作品名。
+- copy 必须是字符串，不要返回数组；写这个角色最出名、最常被记住的经典原话、短台词或口头禅，一到两句即可。
+- topics 小于等于 10 个，返回数组。
+
+限制：
+- 不要写“标题：”“文案：”“话题：”。
+- 不要写解释、评价、剧情描述、人物分析。
+- 不要写“他/她如何如何”的旁白包装。
+- 如果不能确定准确原话，就选更短、更常见的口头禅式经典表达。
+- 不要伪造长引用。
+- 每句必须很短，避免大段原文。
+
+人物：{{character_name}}
+作品：{{work_name}}
+
+--- PROMPT END ---
